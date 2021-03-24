@@ -1,0 +1,43 @@
+<% content_for :title do %>
+  Companies
+<% end %>
+
+<div class="page-header">
+  <h1>Companies</h1>
+  <%= link_to new_company_path, class: 'btn btn-primary' do %>
+    <%= icon 'fas', 'plus' %>
+    Novo Company
+  <% end %>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Active</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @companies.each do |company| %>
+        <tr>
+          <td><%= company.name %></td>
+          <td><%= company.active %></td>
+          <td>
+            <%= link_to company, class: 'btn btn-info btn-sm' do %>
+              <%= icon 'fas', 'eye', class: 'fa-fw' %>
+            <% end %>
+            <%= link_to edit_company_path(company), class: 'btn btn-success btn-sm' do %>
+              <%= icon 'fas', 'edit', class: 'fa-fw' %>
+            <% end %>
+            <%= link_to company, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-sm' do %>
+              <%= icon 'fas', 'times', class: 'fa-fw' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
