@@ -1,7 +1,9 @@
+@import '~bootstrap/scss/bootstrap';
+
 .page-header {
-  @extend .d-flex !optional;
-  @extend .justify-content-between !optional;
-  @extend .align-items-center !optional;
+  @extend .d-flex ;
+  @extend .justify-content-between ;
+  @extend .align-items-center ;
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eeeeee;
