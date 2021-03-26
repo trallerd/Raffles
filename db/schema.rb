@@ -10,53 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_194724) do
+ActiveRecord::Schema.define(version: 2021_03_26_204818) do
 
-  create_table "adresses", force: :cascade do |t|
-    t.string "street"
-    t.string "city"
-    t.string "state"
-    t.integer "contact_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["contact_id"], name: "index_adresses_on_contact_id"
-  end
-
-  create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.boolean "active"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "contacts", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.text "remark"
-    t.integer "kind_id", null: false
-    t.integer "company_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["company_id"], name: "index_contacts_on_company_id"
-    t.index ["kind_id"], name: "index_contacts_on_kind_id"
-  end
-
-  create_table "kinds", force: :cascade do |t|
+  create_table "types", force: :cascade do |t|
     t.string "description"
+    t.integer "inicial_number"
+    t.integer "step"
+    t.integer "ticket_quantities"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "phones", force: :cascade do |t|
-    t.string "number"
-    t.integer "contact_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["contact_id"], name: "index_phones_on_contact_id"
-  end
-
-  add_foreign_key "adresses", "contacts"
-  add_foreign_key "contacts", "companies"
-  add_foreign_key "contacts", "kinds"
-  add_foreign_key "phones", "contacts"
 end
