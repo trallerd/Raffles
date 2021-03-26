@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_26_212030) do
+ActiveRecord::Schema.define(version: 2021_03_26_213126) do
+
+  create_table "raffles", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "type_id", null: false
+    t.string "title"
+    t.text "description"
+    t.datetime "probable_draw_date"
+    t.datetime "start_date_sale"
+    t.datetime "end_date_sale"
+    t.datetime "draw_date"
+    t.float "ticket_value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["type_id"], name: "index_raffles_on_type_id"
+    t.index ["user_id"], name: "index_raffles_on_user_id"
+  end
 
   create_table "types", force: :cascade do |t|
     t.string "description"
@@ -31,4 +47,6 @@ ActiveRecord::Schema.define(version: 2021_03_26_212030) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "raffles", "types"
+  add_foreign_key "raffles", "users"
 end

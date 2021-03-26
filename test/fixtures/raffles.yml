@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  type: one
+  title: MyString
+  description: MyText
+  probable_draw_date: 2021-03-26 18:31:27
+  start_date_sale: 2021-03-26 18:31:27
+  end_date_sale: 2021-03-26 18:31:27
+  draw_date: 2021-03-26 18:31:27
+  ticket_value: 1.5
+
+two:
+  user: two
+  type: two
+  title: MyString
+  description: MyText
+  probable_draw_date: 2021-03-26 18:31:27
+  start_date_sale: 2021-03-26 18:31:27
+  end_date_sale: 2021-03-26 18:31:27
+  draw_date: 2021-03-26 18:31:27
+  ticket_value: 1.5
