@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_26_213126) do
+ActiveRecord::Schema.define(version: 2021_03_26_213337) do
 
   create_table "raffles", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 2021_03_26_213126) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["type_id"], name: "index_raffles_on_type_id"
     t.index ["user_id"], name: "index_raffles_on_user_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.integer "raffle_id", null: false
+    t.integer "user_id", null: false
+    t.integer "number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["raffle_id"], name: "index_tickets_on_raffle_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
   create_table "types", force: :cascade do |t|
@@ -49,4 +59,6 @@ ActiveRecord::Schema.define(version: 2021_03_26_213126) do
 
   add_foreign_key "raffles", "types"
   add_foreign_key "raffles", "users"
+  add_foreign_key "tickets", "raffles"
+  add_foreign_key "tickets", "users"
 end
