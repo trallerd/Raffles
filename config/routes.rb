@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :prizes
   resources :tickets
   resources :raffles
