@@ -25,10 +25,10 @@
     <tbody>
       <% @prizes.each do |prize| %>
         <tr>
-          <td><%= prize.raffle %></td>
+          <td><%= prize.raffle.description %></td>
           <td><%= prize.description %></td>
           <td><%= prize.placing %></td>
-          <td><%= prize.ticket %></td>
+          <td><%= prize.ticket.number %></td>
           <td>
             <%= link_to prize, class: 'btn btn-info btn-sm' do %>
               <%= icon 'fas', 'eye', class: 'fa-fw' %>

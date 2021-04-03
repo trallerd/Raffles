@@ -3,7 +3,7 @@ class TicketsController < ApplicationController
 
   # GET /tickets
   def index
-    @tickets = Ticket.all
+    @tickets = current_user.tickets
   end
 
   # GET /tickets/1
@@ -13,6 +13,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
+    @ticket.user = current_user
   end
 
   # GET /tickets/1/edit
@@ -48,7 +49,7 @@ class TicketsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
-      @ticket = Ticket.find(params[:id])
+      @ticket = current_user.tickets.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
