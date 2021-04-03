@@ -36,21 +36,23 @@
           <td><%= raffle.type %></td>
           <td><%= raffle.title %></td>
           <td><%= raffle.description %></td>
-          <td><%= raffle.probable_draw_date %></td>
-          <td><%= raffle.start_date_sale %></td>
-          <td><%= raffle.end_date_sale %></td>
-          <td><%= raffle.draw_date %></td>
+          <td><%= raffle.probable_draw_date.strftime("%B %d, %Y at %H:%M")  %></td>
+          <td><%= raffle.start_date_sale.strftime("%B %d, %Y at %H:%M") %></td>
+          <td><%= raffle.end_date_sale.strftime("%B %d, %Y at %H:%M") %></td>
+          <td><%= raffle.draw_date.strftime("%B %d, %Y at %H:%M") %></td>
           <td><%= raffle.ticket_value %></td>
           <td>
             <%= link_to raffle, class: 'btn btn-info btn-sm' do %>
               <%= icon 'fas', 'eye', class: 'fa-fw' %>
             <% end %>
-            <% if user_signed_in? %>
+            <% if user_signed_in?  %>
+            <% if current_user == raffle.user  %>
             <%= link_to edit_raffle_path(raffle), class: 'btn btn-success btn-sm' do %>
               <%= icon 'fas', 'edit', class: 'fa-fw' %>
             <% end %>
             <%= link_to raffle, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-sm' do %>
               <%= icon 'fas', 'times', class: 'fa-fw' %>
+            <% end %>
             <% end %>
             <% end %>
 
