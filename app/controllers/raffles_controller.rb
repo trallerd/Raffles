@@ -1,5 +1,6 @@
 class RafflesController < ApplicationController
-  before_action :set_raffle, only: [:show, :edit, :update, :destroy]
+  before_action :set_raffle, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   # GET /raffles
   def index
@@ -7,8 +8,7 @@ class RafflesController < ApplicationController
   end
 
   # GET /raffles/1
-  def show
-  end
+  def show; end
 
   # GET /raffles/new
   def new
@@ -16,8 +16,7 @@ class RafflesController < ApplicationController
   end
 
   # GET /raffles/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /raffles
   def create
@@ -46,13 +45,15 @@ class RafflesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_raffle
-      @raffle = Raffle.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def raffle_params
-      params.require(:raffle).permit(:user_id, :type_id, :title, :description, :probable_draw_date, :start_date_sale, :end_date_sale, :draw_date, :ticket_value)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_raffle
+    @raffle = Raffle.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def raffle_params
+    params.require(:raffle).permit(:user_id, :type_id, :title, :description, :probable_draw_date, :start_date_sale,
+                                   :end_date_sale, :draw_date, :ticket_value)
+  end
 end
