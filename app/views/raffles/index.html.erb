@@ -3,56 +3,35 @@
 <% end %>
 
 <div class="page-header">
-  <h1>Raffles</h1>
   <% if user_signed_in? %>
-  <%= link_to new_raffle_path, class: 'btn btn-primary' do %>
+  <%= link_to new_raffle_path, class: 'btn btn-outline-secondary ' do %>
     <%= icon 'fas', 'plus' %>
     New Raffle
   <% end %>
   <% end %>
 </div>
 
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-      <th>Title</th>
-
-        <th>User</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Ticket value</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @raffles.each do |raffle| %>
-        <tr>
-        <td><%= raffle.title %></td>
-
-          <td><%= raffle.user.name %></td>
-          <td><%= raffle.type %></td>
-          <td><%= raffle.description %></td>
-          <td><%= raffle.ticket_value %></td>
-          <td>
-            <%= link_to raffle, class: 'btn btn-info btn-sm' do %>
-              <%= icon 'fas', 'eye', class: 'fa-fw' %>
-            <% end %>
-            <% if user_signed_in?  %>
-            <% if current_user == raffle.user  %>
-            <%= link_to edit_raffle_path(raffle), class: 'btn btn-success btn-sm' do %>
-              <%= icon 'fas', 'edit', class: 'fa-fw' %>
-            <% end %>
-            <%= link_to raffle, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-sm' do %>
-              <%= icon 'fas', 'times', class: 'fa-fw' %>
-            <% end %>
-            <% end %>
-            <% end %>
-
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="card-columns">
+  <% @raffles.each do |raffle| %>
+    <div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-header"><%=raffle.title%></div>
+      <div class="card-body">
+        <h5 class="card-title"><%=raffle.type%></h5>
+        <p class="card-text"><%= raffle.description%></p>
+        <%= link_to raffle, class: 'btn btn-info btn-sm' do %>
+          <%= icon 'fas', 'eye', class: 'fa-fw' %>
+        <% end %>
+        <% if user_signed_in?  %>
+        <% if current_user == raffle.user  %>
+        <%= link_to edit_raffle_path(raffle), class: 'btn btn-success btn-sm' do %>
+          <%= icon 'fas', 'edit', class: 'fa-fw' %>
+        <% end %>
+        <%= link_to raffle, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-sm' do %>
+          <%= icon 'fas', 'times', class: 'fa-fw' %>
+        <% end %>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>
