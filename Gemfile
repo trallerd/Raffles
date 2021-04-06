@@ -53,9 +53,10 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'dotenv-rails', groups: %i[development test]
-gem 'font-awesome-sass', '~> 5.15.1'
-gem 'simple_form'
-gem 'pry-rails'
 gem 'devise'
+gem 'dotenv-rails', groups: %i[development test]
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+gem 'font-awesome-sass', '~> 5.15.1'
+gem 'pry-rails'
+gem 'simple_form'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

@@ -1,7 +1,37 @@
-User.create name: 'Camila', email: 'camila@camila.com', password: 'abc123', admin: false
-User.create name: 'Bruno', email: 'bruno@bruno.com', password: 'qwe789', admin: false
-User.create name: 'Mauricio', email: 'mauricio@mauricio.com', password: 'asd456', admin: true
+require 'faker'
 
-Type.create description: 'Type 1', inicial_number: 2, step: 1, ticket_quantities: 3
-Type.create description: 'Type 2', inicial_number: 1, step: 1, ticket_quantities: 2
-Type.create description: 'Type 3', inicial_number: 3, step: 1, ticket_quantities: 5
+50.times do
+  User.create name: Faker::Name.unique.name,
+              email: Faker::Internet.unique.email,
+              password: 'abc123', password_confirmation: 'abc123'
+end
+15.times do
+  Type.create description: Faker::Commerce.unique.department,
+              inicial_number: Faker::Number.number(digits: 1),
+              step: Faker::Number.number(digits: 1),
+              ticket_quantities: Faker::Number.number(digits: 2)
+end
+25.times do
+  Raffle.create user: User.all.sample,
+                type: Type.all.sample,
+                title: Faker::Company.industry,
+                description: Faker::Company.unique.catch_phrase,
+                probable_draw_date: Faker::Date.forward(days: 23),
+                start_date_sale: Faker::Date.forward(days: 23),
+                end_date_sale: Faker::Date.forward(days: 23),
+                draw_date: Faker::Date.forward(days: 23),
+                ticket_value: Faker::Commerce.unique.price
+end
+
+(1..25).each do |numb|
+  (1..100).each do |number|
+    Ticket.create(raffle: Raffle.find(numb), user: Raffle.find(numb).user, number: number)
+  end
+end
+
+100.times do
+  Prize.create(raffle: Raffle.all.sample,
+               description: Faker::Vehicle.manufacture,
+               placing: (1..10).to_a.sample,
+               ticket: Ticket.all.sample)
+end

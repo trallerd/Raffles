@@ -4,7 +4,7 @@ class RafflesController < ApplicationController
 
   # GET /raffles
   def index
-    @raffles = Raffle.all
+    @raffles = Raffle.all.includes(:tickets, :prizes)
   end
 
   # GET /raffles/1
