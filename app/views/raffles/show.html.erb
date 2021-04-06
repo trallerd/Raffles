@@ -5,9 +5,11 @@
 <div class="page-header">
   <h1>Raffle's Details</h1>
   <div>
+    <% if current_user == @raffle.user  %>
     <%= link_to edit_raffle_path(@raffle), class: 'btn btn-success' do %>
       <%= icon 'fas', 'edit' %>
       Edit
+    <% end %>
     <% end %>
     <%= link_to raffles_path, class: 'btn btn-outline-secondary' do %>
       <%= icon 'fas', 'bars' %>

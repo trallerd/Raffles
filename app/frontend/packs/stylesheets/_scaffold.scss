@@ -17,7 +17,7 @@
 
 .page-header {
   @extend .d-flex ;
-  @extend .justify-content-end ;
+  @extend .justify-content-between ;
   @extend .align-items-center ;
   padding-bottom: 9px;
   margin: 40px 0 20px;
