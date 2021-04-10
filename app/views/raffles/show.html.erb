@@ -2,9 +2,12 @@
   Raffle's Details
 <% end %>
 
-<div class="page-header">
-  <h1>Raffle's Details</h1>
-  <div>
+
+<div class="card border-secondary">
+<div class="card-header">
+  <div class="d-flex justify-content-between">
+  <div><h4 class="card-title"><%= @raffle.title%></h4></div>
+  <div>  
     <% if current_user == @raffle.user  %>
     <%= link_to edit_raffle_path(@raffle), class: 'btn btn-success' do %>
       <%= icon 'fas', 'edit' %>
@@ -15,38 +18,71 @@
       <%= icon 'fas', 'bars' %>
       Back
     <% end %>
+    </div>
   </div>
 </div>
+<div class="card-body">
+    
+    <h4 class="card-text">Value: <%= @raffle.ticket_value%></h4>
+    <h5 class="card-text">Creator: <%= @raffle.user.name%></h5>
+    <h6 class="card-text">Stard Sale: <%= @raffle.start_date_sale.strftime("%T %F")%></h6>
+    <h6 class="card-text">End Sale: <%= @raffle.end_date_sale.strftime("%T %F")%></h6>
+    <h6 class="card-text">Draw: <%= @raffle.draw_date.strftime("%T %F")%></h6>
+    <p class="card-text">Description: <%= @raffle.description%></p>
+    
+  </div>
+  </div>
+  <h5 class='page-header'>Prizes: </h5>
+<div class="card-columns">
+  <% @raffle.prizes.each do |prize| %>
+    <div class="card bg-warning mb-3" style="max-width: 18rem;">
+    <div class="card-header">Placing: <%=prize.placing%></div>
+      <div class="card-body">
+        <p class="card-text">Prize: <%= prize.description%></p>
+        <%= link_to prize, class: 'btn btn-outline-info btn-sm' do %>
+          <%= icon 'fas', 'eye', class: 'fa-fw' %>
+        <% end %>
+        <% if user_signed_in?  %>
+        <% if current_user == @raffle.user  %>
+        <%= link_to edit_prize_path(prize), class: 'btn btn-outline-success btn-sm' do %>
+          <%= icon 'fas', 'edit', class: 'fa-fw' %>
+        <% end %>
+        <%= link_to prize, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-outline-danger btn-sm' do %>
+          <%= icon 'fas', 'times', class: 'fa-fw' %>
+        <% end %>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<dl class="dl-horizontal">
-  <dt>User:</dt>
-  <dd><%= @raffle.user.name %></dd>
+<h5 class='page-header'>Tickets: </h5>
+<div class="card-columns">
+  <% @raffle.tickets.each do |ticket| %>
+    <div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-header">Raffle: <%=ticket.raffle.title%></div>
+      <div class="card-body">
+      <div class="d-flex justify-content-center">
+        <p class="card-text"><%= ticket.number%></p>
+        </div>
+        <div class="d-flex justify-content-around">
+        <%= link_to ticket, class: 'btn btn-info btn-sm' do %>
+          <%= icon 'fas', 'shopping-cart', class: 'fa-fw' %>
+        <% end %>
+        <% if user_signed_in?  %>
+        <% if current_user == @raffle.user  %>
+        <%= link_to edit_ticket_path(ticket), class: 'btn btn-success btn-sm' do %>
+          <%= icon 'fas', 'edit', class: 'fa-fw' %>
+        <% end %>
+        <%= link_to ticket, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn btn-danger btn-sm' do %>
+          <%= icon 'fas', 'times', class: 'fa-fw' %>
+        <% end %>
+        <% end %>
+        <% end %>
+      </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-  <dt>Type:</dt>
-  <dd><%= @raffle.type %></dd>
-
-  <dt>Title:</dt>
-  <dd><%= @raffle.title %></dd>
-
-  <dt>Description:</dt>
-  <dd><%= @raffle.description %></dd>
-
-  <dt>Probable draw date:</dt>
-  <dd><%= @raffle.probable_draw_date %></dd>
-
-  <dt>Start date sale:</dt>
-  <dd><%= @raffle.start_date_sale %></dd>
-
-  <dt>End date sale:</dt>
-  <dd><%= @raffle.end_date_sale %></dd>
-
-  <dt>Draw date:</dt>
-  <dd><%= @raffle.draw_date %></dd>
-
-  <dt>Ticket value:</dt>
-  <dd><%= @raffle.ticket_value %></dd>
-
-  <dt>Prizes:</dt>
-  <dr><%= @raffle.prizes %></dr>
-
-</dl>
