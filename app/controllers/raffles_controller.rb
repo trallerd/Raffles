@@ -4,7 +4,13 @@ class RafflesController < ApplicationController
 
   # GET /raffles
   def index
-    @raffles = Raffle.all.includes(:tickets, :type, :user).left_joins(:prizes).group('raffles.id')
+    @search = params[:search]
+
+    @raffles = Raffle.all.includes(:tickets, :type, :user)
+                     .left_joins(:prizes)
+                     .group('raffles.id')
+
+    @raffles = @raffles.where('raffles.title LIKE ?', "%#{@search[:title]}%") if @search && !@search[:title].blank?
   end
 
   # GET /raffles/1
