@@ -67,7 +67,8 @@
         <p class="card-text"><%= ticket.number%></p>
         </div>
         <div class="d-flex justify-content-around">
-        <%= link_to ticket, class: 'btn btn-info btn-sm' do %>
+        <!-- Button buy a ticket, if is avalible. if not card will be disable and red-->
+        <%= link_to root_path	, class: 'btn btn-info btn-sm' do %> 
           <%= icon 'fas', 'shopping-cart', class: 'fa-fw' %>
         <% end %>
         <% if user_signed_in?  %>

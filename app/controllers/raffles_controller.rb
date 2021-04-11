@@ -4,7 +4,7 @@ class RafflesController < ApplicationController
 
   # GET /raffles
   def index
-    @raffles = Raffle.all.includes(:tickets, :prizes, :type, :user)
+    @raffles = Raffle.all.includes(:tickets, :type, :user).left_joins(:prizes).group('raffles.id')
   end
 
   # GET /raffles/1
