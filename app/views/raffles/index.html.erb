@@ -4,7 +4,7 @@
 
 <div class="page-header">
   <% if user_signed_in? %>
-  <%= link_to new_raffle_path, class: 'btn btn-outline-secondary ' do %>
+  <%= link_to new_raffle_path, class: 'btn btn-secondary ' do %>
     <%= icon 'fas', 'plus' %>
     New Raffle
   <% end %>
@@ -13,7 +13,7 @@
 
 <div class="card-columns">
   <% @raffles.each do |raffle| %>
-    <div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div class="card border-secondary" style="max-width: 18rem;">
     <div class="card-header"><%=raffle.title%></div>
       <div class="card-body">
         <h5 class="card-title"><%=raffle.type%></h5>

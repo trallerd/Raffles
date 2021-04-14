@@ -1,0 +1,7 @@
+<%= simple_form_for :search, url: raffles_path, method: :get, html: { class: 'align-middle', style: 'max-width: 15rem;' } do |f|%>
+    <%= f.input :title, 
+    input_html: {value: @search ? @search[:title] : ''}, 
+    class: 'form-control mr-sm-2',
+    placeholder: 'Search', 
+    label: false %>
+<% end %>

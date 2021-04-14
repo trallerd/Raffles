@@ -2,31 +2,29 @@
   Prize's Details
 <% end %>
 
-<div class="page-header">
-  <h1>Prize's Details</h1>
-  <div>
+<div class="card border-secondary">
+<div class="card-header">
+  <div class="d-flex justify-content-between">
+  <div><h4 class="card-title"><%= @prize.raffle.title%></h4></div>
+  <div>  
+    <% if current_user == @prize.raffle.user  %>
     <%= link_to edit_prize_path(@prize), class: 'btn btn-success' do %>
       <%= icon 'fas', 'edit' %>
       Edit
+    <% end %>
     <% end %>
     <%= link_to raffles_path, class: 'btn btn-outline-secondary' do %>
       <%= icon 'fas', 'bars' %>
       Back
     <% end %>
+    </div>
   </div>
 </div>
-
-<dl class="dl-horizontal">
-  <dt>Raffle:</dt>
-  <dd><%= @prize.raffle.description %></dd>
-
-  <dt>Description:</dt>
-  <dd><%= @prize.description %></dd>
-
-  <dt>Placing:</dt>
-  <dd><%= @prize.placing %></dd>
-
-  <dt>Ticket:</dt>
-  <dd><%= @prize.ticket.number %></dd>
-
-</dl>
+<div class="card-body">
+    
+ <h5 class="card-text">Raffle:  <%= @prize.raffle.title%></h5>
+    <h5 class="card-text">Description: <%= @prize.description %></h5>
+    <h6 class="card-text">Placing: <%= @prize.placing %></h6>
+    
+  </div>
+  </div>
