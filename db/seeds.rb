@@ -24,8 +24,8 @@ end
 end
 
 (1..25).each do |numb|
-  (1..100).each do |number|
-    Ticket.create(raffle: Raffle.find(numb), user: Raffle.find(numb).user, number: number)
+  (1..1000).each do |number|
+    Ticket.create(raffle: Raffle.find(numb), number: number)
   end
 end
 
