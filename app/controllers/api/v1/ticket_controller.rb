@@ -1,14 +1,7 @@
-class Api::V1::TicketController < ActionController::API
+class Api::V1::TicketController < Api::V1::ApplicationController
   def buy
-    raffle = Raffle.all.sample
-
-    render json: {
-      success: true,
-      source: 'Api::V1::Ticket',
-      raffle: {
-        title: raffle.title,
-        user: raffle.user.name
-      }
-    }
+    @raffle = Raffle.first
+    @ticket = @raffle.tickets.all.sample
   end
+
 end

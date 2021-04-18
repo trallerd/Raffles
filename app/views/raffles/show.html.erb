@@ -70,13 +70,13 @@
       <div class="d-flex justify-content-center">
         <p class="card-text"><%= ticket.number%></p>
         </div>
-        <div class="d-flex justify-content-around">
+        <div id="buy-ticket" class="d-flex justify-content-around">
         <!-- Button buy a ticket, if is avalible. if not card will be disable and red-->
         <% if !ticket.user %>
-        <%= link_to root_path	, class: 'btn btn-info btn-sm' do %> 
-            <%= icon 'fas', 'shopping-cart', class: 'fa-fw' %>
+       <button id="btn-buy-ticket" class="btn btn-info btn-sm" > 
+            <%= icon 'fas', 'shopping-cart', class: 'fa-fw'%>
           <% end %>
-        <%end%>
+        </button>
 
       </div>
       </div>
