@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_211217) do
     t.integer "raffle_id", null: false
     t.string "description"
     t.integer "placing"
-    t.integer "ticket_id", null: false
+    t.integer "ticket_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["raffle_id"], name: "index_prizes_on_raffle_id"
