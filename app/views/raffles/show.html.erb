@@ -68,19 +68,34 @@
     <div class="card-header">Raffle: <%=ticket.raffle.title%></div>
       <div class="card-body">
       <div class="d-flex justify-content-center">
+        <% if ticket.user %>
         <p class="card-text"><%= ticket.number%></p>
+        <%end%>
         </div>
-        <div id="buy-ticket" class="d-flex justify-content-around">
-        <!-- Button buy a ticket, if is avalible. if not card will be disable and red-->
+        <div class="d-flex justify-content-around">
         <% if !ticket.user %>
-       <button id="btn-buy-ticket" class="btn btn-info btn-sm" > 
-            <%= icon 'fas', 'shopping-cart', class: 'fa-fw'%>
+        <%= link_to ticket, ticket_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modalBuy', class: 'btn btn-info btn-md'}  %>
+        <div id="modalBuy" class="modal hide fade" role="dialog" aria-labelledby="buyTicket" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form class="form-horizontal" id="formBuy">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><b>Buy Ticket?</b></h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-sm">YES!</button>
+                        <button type="cancel" class="btn btn-danger btn-sm" data-dismiss="modal">NOP</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
           <% end %>
-        </button>
-
       </div>
       </div>
     </div>
   <% end %>
 </div>
+
+
 

@@ -1,7 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
+import axios from "axios";
+
+document.addEventListener('turbolinks:load', () => {
     const button = document.querySelector('#btn-buy-ticket');
-    const container = document.querySelector('#buy-ticket');
+    if (!button) return;
     button.addEventListener('click', () => {
-        console.log('Click');
+        const { url } = button.dataset;
+        axios
+            .get(url)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     });
 });

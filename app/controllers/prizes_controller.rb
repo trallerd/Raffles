@@ -3,7 +3,7 @@ class PrizesController < ApplicationController
 
   # GET /prizes
   def index
-    @prizes = Prize.all
+    @prizes = Prize.all.includes(:raffle)
   end
 
   # GET /prizes/1

@@ -20,10 +20,16 @@
   <dt>Raffle:</dt>
   <dd><%= @ticket.raffle.description %></dd>
 
-  <dt>User:</dt>
-  <dd><%= @ticket.user.name %></dd>
-
   <dt>Number:</dt>
   <dd><%= @ticket.number %></dd>
+
+  <% if @ticket.user%>
+  <dt>User:</dt>
+  <dd><%= @ticket.user.name %></dd>
+  <% else %>
+  <button id="btn-buy-ticket" class="btn btn-info btn-sm" data-url="<%= @ticket.id %>" > 
+    <%= icon 'fas', 'shopping-cart', class: 'fa-fw'%>
+</button>
+  <% end %>
 
 </dl>

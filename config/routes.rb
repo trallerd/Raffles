@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'ticket/buy'
+      resources :ticket, only: [] do
+        get :buy, on: :member
+      end
     end
   end
   devise_for :users

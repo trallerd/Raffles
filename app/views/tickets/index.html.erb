@@ -15,7 +15,6 @@
     <thead>
       <tr>
         <th>Raffle</th>
-        <th>User</th>
         <th>Number</th>
         <th></th>
       </tr>
@@ -25,7 +24,6 @@
       <% @tickets.each do |ticket| %>
         <tr>
           <td><%= ticket.raffle.description %></td>
-          <td><%= ticket.user.name %></td>
           <td><%= ticket.number %></td>
           <td>
             <%= link_to ticket, class: 'btn btn-info btn-sm' do %>
