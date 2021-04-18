@@ -25,13 +25,16 @@ end
 
 (1..25).each do |numb|
   (1..100).each do |number|
-    Ticket.create(raffle: Raffle.find(numb), user: Raffle.find(numb).user, number: number)
+    if Faker::Boolean.boolean
+      Ticket.create(raffle: Raffle.find(numb), user: Raffle.find(numb).user, number: number)
+    else
+      Ticket.create(raffle: Raffle.find(numb), number: number)
+    end
   end
 end
 
 100.times do
   Prize.create(raffle: Raffle.all.sample,
                description: Faker::Vehicle.manufacture,
-               placing: (1..10).to_a.sample,
-               ticket: Ticket.all.sample)
+               placing: (1..10).to_a.sample)
 end

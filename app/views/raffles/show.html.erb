@@ -60,7 +60,11 @@
 <h5 class='page-header'>Tickets: </h5>
 <div class="card-columns">
   <% @raffle.tickets.each do |ticket| %>
+  <% if ticket.user%>
+    <div class="card bg-secondary mb-3" style="max-width: 18rem;">
+  <% else %>
     <div class="card bg-light mb-3" style="max-width: 18rem;">
+  <%end%>
     <div class="card-header">Raffle: <%=ticket.raffle.title%></div>
       <div class="card-body">
       <div class="d-flex justify-content-center">
@@ -68,9 +72,12 @@
         </div>
         <div class="d-flex justify-content-around">
         <!-- Button buy a ticket, if is avalible. if not card will be disable and red-->
+        <% if !ticket.user %>
         <%= link_to root_path	, class: 'btn btn-info btn-sm' do %> 
-          <%= icon 'fas', 'shopping-cart', class: 'fa-fw' %>
-        <% end %>
+            <%= icon 'fas', 'shopping-cart', class: 'fa-fw' %>
+          <% end %>
+        <%end%>
+
       </div>
       </div>
     </div>
