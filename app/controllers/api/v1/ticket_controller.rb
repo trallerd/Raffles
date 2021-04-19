@@ -4,7 +4,7 @@ class Api::V1::TicketController < Api::V1::ApplicationController
   def buy
     @ticket = Ticket.find(params[:id])
     if @ticket.update(user: current_user)
-      render :buy, status: :ok, ticket: @ticket
+      redirect_to raffle_path(@ticket.raffle)
     else
       render json: @ticket.errors, status: :unprocessable_entity
     end

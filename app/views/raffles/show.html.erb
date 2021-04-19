@@ -78,12 +78,12 @@
         <div id="modalBuy" class="modal hide fade" role="dialog" aria-labelledby="buyTicket" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form class="form-horizontal" id="formBuy">
+                <form class="form-horizontal" action = "<%= buy_api_v1_ticket_path(ticket)%>"id="formBuy">
                     <div class="modal-header">
                         <h5 class="modal-title"><b>Buy Ticket?</b></h5>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success btn-sm">YES!</button>
+                        <button id="btn-buy-ticket" type="submit" class="btn btn-success btn-sm">YES!</button>
                         <button type="cancel" class="btn btn-danger btn-sm" data-dismiss="modal">NOP</button>
                     </div>
                 </form>
