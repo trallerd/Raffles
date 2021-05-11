@@ -29,7 +29,8 @@ class RafflesController < ApplicationController
     @raffle = Raffle.new(raffle_params)
 
     if @raffle.save
-      redirect_to @raffle, notice: 'Raffle was successfully created.'
+      CreateTicketsJob.perform_later(@raffle)
+      redirect_to @raffle, notice: 'Raffle was successfully created. Tickets being created'
     else
       render :new
     end

@@ -18,7 +18,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -58,5 +58,6 @@ gem 'dotenv-rails', groups: %i[development test]
 gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'pry-rails'
+gem 'sidekiq'
 gem 'simple_form'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
