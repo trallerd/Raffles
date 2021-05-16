@@ -14,7 +14,9 @@ class RafflesController < ApplicationController
   end
 
   # GET /raffles/1
-  def show; end
+  def show
+    @raffle.tickets = @raffle.tickets.paginate(page: params[:page] || 1, per_page: 100)
+  end
 
   # GET /raffles/new
   def new
