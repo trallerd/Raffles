@@ -79,9 +79,26 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form class="form-horizontal" action = "<%= buy_api_v1_ticket_path(ticket)%>"id="formBuy">
+                  <h5 class="modal-header"><b>Buy Ticket?</b></h5>
+
                     <div class="modal-header">
-                        <h5 class="modal-title"><b>Buy Ticket?</b></h5>
-                    </div>
+                        <div class="form-group">
+                          <div class='row'>
+                              <div class='col-sm-12'>
+                                  <label><b>Number</b></label>
+                                  <input type="text" class="form-control" value=<%= ticket.number%> readonly>
+                              </div>
+                              <div class='col-sm-12'>
+                                  <label><b>Price</b></label>
+                                  <input type="text" class="form-control" value=<%= @raffle.ticket_value%> readonly>
+                              </div>
+                              <div class='col-sm-12'>
+                                  <label><b>Raw Date</b></label>
+                                  <input type="text" class="form-control" value=<%= @raffle.draw_date%> readonly>
+                              </div>
+                              </div>
+                          </div>    
+                      </div>
                     <div class="modal-footer">
                         <button id="btn-buy-ticket" type="submit" class="btn btn-success btn-sm">YES!</button>
                         <button type="cancel" class="btn btn-danger btn-sm" data-dismiss="modal">NOP</button>
@@ -98,7 +115,6 @@
   <% end %>
    
 </div>
-<h5 class="d-flex justify-content-center"><%= will_paginate @tickets, :container => false %></h5>
 
 
 
