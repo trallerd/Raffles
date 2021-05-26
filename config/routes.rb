@@ -20,6 +20,11 @@ Rails.application.routes.draw do
     end
   end
   resources :users
+  resource :user, only: [] do
+    member do
+      get :dashboard
+    end
+  end
   resources :types
   root to: 'raffles#index'
 

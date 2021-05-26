@@ -1,0 +1,61 @@
+<div class="page-header">
+    <div><%= link_to new_raffle_path, class: 'btn btn-secondary ' do %> 
+  <%= icon 'fas', 'plus' %> New Raffle <% end %> 
+  <%= link_to raffles_path, class: 'btn  btn-success ' do %>
+  <%= icon 'fas', 'plus' %> Buy Tickets! <% end %></div>
+  
+  <h5>Welcome to your Dashboard, <%= current_user.name %>!</h5>
+</div>
+
+<div class="card">
+  <div
+    style="color: white"
+    class="h4 card-header bg-warning d-flex justify-content-around"
+  >
+    <div>Your Tickets!</div>
+    <div><%= @tickets.count %> purchased</div>
+  </div>
+  <div class="card-body">
+    <div class="card-columns">
+      <% @tickets.each do |ticket| %>
+      <div class="card border-warning">
+        <h5 class="card-header">Raffle: <%=ticket.raffle.title%></h5>
+        <div class="card-body">
+          <p class="card-text text-center"><%= ticket.number%></p>
+          <p class="card-text text-center"><%= ticket.raffle.description%></p>
+          <p class="card-text text-center">
+            Draw Date: <%= ticket.raffle.draw_date.to_formatted_s%>
+          </p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="card mt-4">
+  <h4 style="color: white" class="card-header bg-danger text-center">
+    Raffles you started!
+  </h4>
+  <div class="card-body">
+    <div class="card-columns">
+      <% @raffles.each do |raffle| %>
+      <div class="card border-danger">
+        <div class="card-header text-center"><%=raffle.title%></div>
+        <div class="card-body text- center">
+          <h5 class="card-title text-center"><%=raffle.type%></h5>
+          <p class="card-text text-center"><%= raffle.description%></p>
+          <div class="d-flex justify-content-between">
+            <%= link_to raffle, class: 'btn btn-info btn-sm' do %> 
+            <%= icon 'fas', 'eye', class: 'fa-fw' %>  <% end %>
+            <%= link_to edit_raffle_path(raffle), class: 'btn btn-success btn-sm' do %> 
+            <%= icon 'fas', 'edit', class: 'fa-fw' %> <% end %>
+            <%= link_to raffle, method: :delete, data: { confirm: 'Você tem certeza?' }, class: 'btn
+            btn-danger btn-sm' do %> 
+            <%= icon 'fas', 'times', class: 'fa-fw' %>  <% end %> 
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
